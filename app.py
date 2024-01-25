@@ -57,6 +57,10 @@ def index():
             user_id=user_id
         )
 
+        leaves_same_user = LeaveRequest.query.filter_by(user_id=user_id).all()
+        for leave in leaves_same_user:
+            day_of_start = leave.date_start.day
+
         try:
             db.session.add(new_leave)
             db.session.commit()
